@@ -9,16 +9,19 @@
 ## Tasks Description
 
 ### 1. Place Order System
+
 - Presents a menu with items: Coffee, Tea, Sandwich, and Pastry.
 - Users can select items to order by entering the corresponding number.
 - The system keeps track of the total amount, number of items, and records the highest and lowest priced items ordered.
 
 ### 2. Billing with GST and Discount
+
 - Applies a 20% discount if the subtotal exceeds ₹1000, or 10% if it exceeds ₹500.
 - Calculates GST at 5% on the discounted amount.
 - Displays the subtotal, discount, GST, and the final total bill.
 
 ### 3. Café Report
+
 - After order completion, displays a report including:
   - Total items sold
   - Highest and lowest price items
@@ -26,6 +29,7 @@
 - If no sales are made, it notifies the user.
 
 ### 4. Password Change Feature
+
 - Prompts the user to enter the current password.
 - Allows the user to set and confirm a new password.
 - Validates the password change process and provides appropriate feedback.
@@ -49,6 +53,10 @@
 ### 4. Password Change
 
 ![Password Change Screenshot](screenshots/password_change.png)
+
+### 5. Webpage Output
+
+![Webpage Output Screenshot](screenshots/Webpage_Output.png)
 
 ---
 
