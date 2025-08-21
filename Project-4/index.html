@@ -2,132 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #19a37a;
-        }
-
-        #output {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #19a37a;
-            border-radius: 8px;
-            background: #1e1e1e;
-            color: #fff;
-            min-height: 100px;
-            white-space: pre-wrap;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Calculator Program</title>
 </head>
 
 <body>
-    <h1>Smart Calculator</h1>
-    <p id="output">Results will appear here...</p>
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-    <script>
-        // Arithmetic Calculator
-        function arithmetic(num1, num2, operator) {
-            if (operator == '+') {
-                return num1 + num2
-            } else if (operator == '-') {
-                return num1 - num2
-            } else if (operator == '*') {
-                return num1 * num2
-            } else if (operator == '/') {
-                return num2 !== 0 ? num1 / num2 : 'Error: Division by zero'
-            } else if (operator == '%') {
-                return num2 !== 0 ? num1 % num2 : 'Error: Division by zero'
-            } else {
-                return 'Invalid Operator'
-            }
-        }
+        <div class="bg-white rounded-[2rem] shadow-xl p-6 max-w-[320px] flex flex-col col-3 items-center">
+            <input type="text" id="display"
+                class="w-full mb-5 p-4 bg-gray-300 text-right text-2xl font-semibold border-none outline-none shadow-inner"
+                readonly>
 
-        // Square Calculator
-        function square(num) {
-            return num * num
-        }
+            <div class="grid grid-cols-4 gap-3 w-full">
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="clearDisplay()">C </button>
 
-        // Cube Calculator
-        function cube(num) {
-            return num * num * num
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('%')"> %</button>
 
-        // Factorial Calculator
-        function factorial(n) {
-            if (n < 0) return 'Error: Negative number.'
-            if (n === 0 || n === 1) return 1
-            return n * factorial(n - 1)
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('/')">÷</button>
 
-        // Even/Odd Checker
-        function isEven(num) {
-            return num % 2 === 0 ? 'Even' : 'Odd'
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('*')"> ×</button>
 
-        function showOutput(msg) {
-            console.log(msg)
-            document.getElementById('output').innerHTML += `\n${msg}`
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('7')"> 7</button>
 
-        function showMenu() {
-            return parseInt(
-                prompt(
-                    `Choose an option
-                1. Arithmetic Calculator
-                2. Square and Cube Calculator
-                3. Factorial Calculator
-                4. Even/Odd Calculator
-                0. Exit`
-                )
-            )
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('8')">8</button>
 
-        function StartCalc() {
-            let choice
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('9')">9</button>
 
-            do {
-                choice = showMenu()
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('-')">-</button>
 
-                if (choice == 1) {
-                    let num1 = parseInt(prompt('Enter 1st num: '))
-                    let num2 = parseInt(prompt('Enter 2nd num: '))
-                    let operator = prompt('Enter operator (+, -, *, /, %):')
-                    let result1 = arithmetic(num1, num2, operator)
-                    showOutput(
-                        `Arithmetic Result: ${num1} ${operator} ${num2} = ${result1}`
-                    )
-                } else if (choice == 2) {
-                    let n = parseInt(prompt('Enter a num: '))
-                    let sq = square(n)
-                    let cb = cube(n)
-                    showOutput(`Square of ${n} = ${sq}`)
-                    showOutput(`Cube of ${n} = ${cb}`)
-                } else if (choice == 3) {
-                    let factNum = parseInt(prompt('Enter a num: '))
-                    let fact = factorial(factNum)
-                    showOutput(`Factorial of ${factNum} = ${fact}`)
-                } else if (choice == 4) {
-                    let evenNum = parseInt(prompt('Enter a num: '))
-                    let type = isEven(evenNum)
-                    showOutput(`${evenNum} is ${type}`)
-                } else if (choice == 0) {
-                    alert('Exiting Smart Calculator. Goodbye!')
-                } else {
-                    alert('Invalid choice! Please try again.')
-                }
-            } while (choice != 0)
-        }
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('4')">4</button>
 
-        StartCalc()
-    </script>
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('5')">5</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('6')">6</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('+')">+</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('1')">1</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('2')">2</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('3')">3</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-transparent" disabled></button>
+
+                <button type="button"
+                    class="col-span-2 h-14 bg-gray-300 rounded-full text-xl font-medium text-gray-700 active:bg-gray-200"
+                    id="output" onclick="addToDisplay('0')">0</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-gray-200 rounded-full text-xl font-medium text-gray-600 active:bg-gray-300"
+                    id="output" onclick="addToDisplay('.')">.</button>
+
+                <button type="button"
+                    class="col-span-1 h-14 bg-green-600 text-white rounded-full text-xl font-medium active:bg-green-700"
+                    id="output" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp" defer></script> -->
+    <script src="script.js"></script>
+
 </body>
 
 </html>
