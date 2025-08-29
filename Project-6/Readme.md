@@ -39,9 +39,5 @@ The goal is to provide an easy-to-use slider interface that is user-friendly, dy
 
 ![Initial View of Webpage](screenshots/Webpage_View.png)
 
-<video width="480" controls>
-  <source src="screenshots/slider-autoplay.mp4" type="video/mp4" autoplay>
-</video>
-
 ![Console View](screenshots/Console_View.png)
 
