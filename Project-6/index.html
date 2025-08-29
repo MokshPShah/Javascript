@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="tailwind.js"></script>
+</head>
+
+<body class="bg-gradient-to-tr from-pink-600 via-purple-700 to-fuchsia-800">
+
+    <div class="mt-20 mb-10 flex items-center justify-center">
+        <div
+            class="flex justify-center relative border-2 border-white border-opacity-30 rounded-lg shadow-md drop-shadow-md shadow-gray-700">
+
+            <img id="slider-img" class="max-w-full max-h-[60vh] object-contain block rounded-lg opacity-0 transition-opacity duration-700 ease-in-out"
+                src="./images/autumn.jpg" alt="Flowers">
+
+            <div class="absolute bottom-3 text-center text-white">
+                <div class="text-lg font-medium" id="caption">Pink Forest</div>
+                <div class="text-md" id="counter">Slide 1 of 3</div>
+            </div>
+
+            <button
+                class="text-white absolute right-3 cursor-pointer top-48 text-xl bg-fuchsia-600 bg-opacity-40 hover:bg-fuchsia-700 py-2 px-3 rounded-full transition-all duration-300" title="Next Slide"
+                onclick="nextSlide()">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+
+            <button
+                class="text-white absolute left-3 cursor-pointer top-48 text-xl bg-fuchsia-600 bg-opacity-40 hover:bg-fuchsia-700 py-2 px-3 rounded-full transition-all duration-300" title="Previous Slide"
+                onclick="prevSlide()">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+
+            <button
+                class="mx-auto absolute bottom-2 right-2 text-white bg-gray-700 opacity-70 py-2 px-3 rounded-full hover:bg-gray-800 hover:opacity-100 cursor-pointer transition-all duration-300"
+                onclick="toggleAutoPlay()" id="autoPlay" title="Start Auto Play"> 
+                <i class="fa-solid fa-caret-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex items-center justify-center text-center text-white mb-10">
+        <div class="w-[50vw] bg-purple-300 pt-7 pb-5 rounded-md">
+            <div class="text-xl font-bold text-gray-700">Add New Image</div>
+
+            <input type="text" placeholder="Enter the Image URL"
+                class="border-0 mx-4 outline-0 p-3 w-3/4 rounded-md bg-fuchsia-200 text-black mt-10 placeholder:text-gray-700"
+                name="img_url" id="img_url" title="Enter the Image URL">
+            <span class="text-sm block text-red-700 mt-2" id="imgError"></span>
+
+            <input type="text" placeholder="Enter the Image caption"
+                class="border-0 mx-4 outline-0 p-3 w-3/4 rounded-md bg-fuchsia-200 text-black mt-10 placeholder:text-gray-700"
+                name="img_caption" id="img_caption" title="Enter the Image caption">
+            <span class="text-sm block text-red-700 mt-2" id="captionError"></span>
+
+            <button
+                class="block mx-auto mt-10 bg-pink-600 py-2 px-3 rounded-md hover:bg-pink-700 cursor-pointer transition-all duration-300"
+                onclick="addSlide()" title="Add Masterpiece"> 
+                <i class="fa-solid fa-plus"></i> Add Masterpiece
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
