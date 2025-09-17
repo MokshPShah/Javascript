@@ -39,25 +39,52 @@
 
     <!-- Main Section -->
     <main>
+        <!-- Alert -->
+        <div role="alert" class="hidden transition-all duration-300" id="alert">
+            <div class="relative flex items-center w-full p-3 text-sm text-white" id="alertBg">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="h-5 w-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                    </path>
+                </svg>
+                <span id="alertTxt" class="ml-2"></span>
+                <button
+                    class="flex items-center justify-center transition-all w-8 h-8 rounded-md text-white hover:bg-white/10 active:bg-white/10 absolute top-1.5 right-1.5"
+                    type="button" onclick="closeAlert()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="h-5 w-5" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Form -->
         <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg my-10 border border-rose-600">
             <h2 class="text-2xl font-semibold text-rose-600 mb-6 text-center">Add Music Product</h2>
-            <form action="#" method="POST">
+            <form action="#" method="POST" id="product_form">
                 <div class="grid grid-cols-2 space-x-4">
                     <div class="mb-4">
-                        <label for="product_name" class="block text-sm font-medium text-gray-700">Product Name</label>
-                        <input type="text" id="product_name" name="product_name" required
+                        <label for="music_name" class="block text-sm font-medium text-gray-700">Music Name</label>
+                        <input type="text" id="music_name" name="music_name"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
                     </div>
                     <div class="mb-4">
                         <label for="artist_name" class="block text-sm font-medium text-gray-700">Artist Name</label>
-                        <input type="text" id="artist_name" name="artist_name" required
+                        <input type="text" id="artist_name" name="artist_name"
+                            class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                    </div>
+                    <div class="mb-4 col-span-2">
+                        <label for="song_image" class="block text-sm font-medium text-gray-700">Song Image Link</label>
+                        <input type="text" id="song_image" name="song_image"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
                     </div>
                     <div class="mb-4">
                         <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
-                        <select id="genre" name="genre" required
+                        <select id="genre" name="genre"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
                             <option value="">Select Genre</option>
+                            <option value="pop">Romantic</option>
                             <option value="pop">Pop</option>
                             <option value="rock">Rock</option>
                             <option value="jazz">Jazz</option>
@@ -67,7 +94,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
-                        <input type="date" id="release_date" name="release_date" required
+                        <input type="date" id="release_date" name="release_date"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
                     </div>
                 </div>
@@ -76,14 +103,14 @@
                     <div class="relative w-full mt-2">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
 
-                        <input type="number" id="price" name="price" required min="0"
+                        <input type="number" id="price" name="price" min="5"
                             class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
                     </div>
 
                 </div>
                 <div class="flex justify-center mt-6">
                     <button type="submit"
-                        class="px-6 py-3 bg-rose-600 text-white font-semibold rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50">
+                        class="px-6 py-3 bg-rose-600 text-white font-semibold rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50 cursor-pointer">
                         Add Product
                     </button>
                 </div>
@@ -99,7 +126,7 @@
                     <tr class="border-b bg-gray-100">
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Sr. No.</th>
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Image</th>
-                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Product Name</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Music Name</th>
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Artist Name</th>
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Genre</th>
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Release Date</th>
@@ -107,24 +134,9 @@
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Example row -->
+                <tbody id="songTable">
                     <tr class="border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-gray-700">1</td>
-                        <td class="px-6 py-4">
-                            <img src="assets/images/danger.png" alt="Album Image"
-                                class="w-20 h-20 object-cover rounded-md">
-                        </td>
-                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Danger (From "Param Sundari")</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Sachin-Jigar, Vishal Dadlani, Parvathi Meenakshi & Amitabh Bhattacharya</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">2025-08-21</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">$19.99</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">
-                            <button
-                                class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
-                            <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer">Delete</button>
-                        </td>
+                        
 
                     </tr>
                     <tr class="border-b hover:bg-gray-50">
@@ -134,7 +146,8 @@
                                 class="w-20 h-20 object-cover rounded-md">
                         </td>
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">Saiyaara (Movie: Saiyaara)</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Faheem Abdullah, Arslan Nizami & Irshad Kamil • SAIYAARA • 2025</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">Faheem Abdullah, Arslan Nizami & Irshad Kamil •
+                            SAIYAARA • 2025</td>
                         <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
                         <td class="px-6 py-4 text-sm text-gray-700">2025-08-15</td>
                         <td class="px-6 py-4 text-sm text-gray-700">$15.99</td>
@@ -151,6 +164,10 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        renderTable();
+        addMusic();
+    </script>
 </body>
 
 </html>
