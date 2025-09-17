@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Manage Products | GrooveGear - Where Music Begins</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="tailwind.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-rose-100 shadow-md">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a href="index.html" class="flex title-font font-medium items-center mb-4 md:mb-0">
+                <span class="ml-3 text-xl font-bold">GrooveGear</span>
+            </a>
+            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+                <a href="index.html" class="mr-5 hover:text-rose-600 nav-item">Home</a>
+                <a href="products.html" class="mr-5 hover:text-rose-600 nav-item">Products</a>
+                <a href="manageProducts.html" class="mr-5 hover:text-rose-600 nav-item">Manage Product</a>
+            </nav>
+            <a href="addCart.html"
+                class="inline-flex items-center bg-rose-500 text-white border-0 py-2 px-3 focus:outline-none hover:bg-rose-600 rounded-md text-base mt-4 md:mt-0 transition-all duration-300">View
+                Cart
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg my-10 border border-rose-600">
+            <h2 class="text-2xl font-semibold text-rose-600 mb-6 text-center">Add Music Product</h2>
+            <form action="#" method="POST">
+                <div class="grid grid-cols-2 space-x-4">
+                    <div class="mb-4">
+                        <label for="product_name" class="block text-sm font-medium text-gray-700">Product Name</label>
+                        <input type="text" id="product_name" name="product_name" required
+                            class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="artist_name" class="block text-sm font-medium text-gray-700">Artist Name</label>
+                        <input type="text" id="artist_name" name="artist_name" required
+                            class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                    </div>
+                    <div class="mb-4">
+                        <label for="genre" class="block text-sm font-medium text-gray-700">Genre</label>
+                        <select id="genre" name="genre" required
+                            class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                            <option value="">Select Genre</option>
+                            <option value="pop">Pop</option>
+                            <option value="rock">Rock</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="classical">Classical</option>
+                            <option value="hip-hop">Hip-Hop</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="release_date" class="block text-sm font-medium text-gray-700">Release Date</label>
+                        <input type="date" id="release_date" name="release_date" required
+                            class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                    <div class="relative w-full mt-2">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
+
+                        <input type="number" id="price" name="price" required min="0"
+                            class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" />
+                    </div>
+
+                </div>
+                <div class="flex justify-center mt-6">
+                    <button type="submit"
+                        class="px-6 py-3 bg-rose-600 text-white font-semibold rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50">
+                        Add Product
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-rose-600 mb-6 text-center">Music Products List</h2>
+
+            <!-- Table -->
+            <table class="min-w-full table-auto border-collapse">
+                <thead>
+                    <tr class="border-b bg-gray-100">
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Sr. No.</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Image</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Product Name</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Artist Name</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Genre</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Release Date</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Price</th>
+                        <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row -->
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 text-sm text-gray-700">1</td>
+                        <td class="px-6 py-4">
+                            <img src="assets/images/danger.png" alt="Album Image"
+                                class="w-20 h-20 object-cover rounded-md">
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Danger (From "Param Sundari")</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">Sachin-Jigar, Vishal Dadlani, Parvathi Meenakshi & Amitabh Bhattacharya</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">2025-08-21</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">$19.99</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">
+                            <button
+                                class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
+                            <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer">Delete</button>
+                        </td>
+
+                    </tr>
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 text-sm text-gray-700">2</td>
+                        <td class="px-6 py-4">
+                            <img src="./assets/images/saiyara.png" alt="Album Image"
+                                class="w-20 h-20 object-cover rounded-md">
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Saiyaara (Movie: Saiyaara)</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">Faheem Abdullah, Arslan Nizami & Irshad Kamil • SAIYAARA • 2025</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">2025-08-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">$15.99</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">
+                            <button
+                                class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
+                            <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer">Delete</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
