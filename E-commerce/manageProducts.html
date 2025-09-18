@@ -84,7 +84,7 @@
                         <select id="genre" name="genre"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
                             <option value="">Select Genre</option>
-                            <option value="pop">Romantic</option>
+                            <option value="romantic">Romantic</option>
                             <option value="pop">Pop</option>
                             <option value="rock">Rock</option>
                             <option value="jazz">Jazz</option>
@@ -109,7 +109,7 @@
 
                 </div>
                 <div class="flex justify-center mt-6">
-                    <button type="submit"
+                    <button type="submit" id="productBtn"
                         class="px-6 py-3 bg-rose-600 text-white font-semibold rounded-md shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50 cursor-pointer">
                         Add Product
                     </button>
@@ -134,31 +134,7 @@
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Action</th>
                     </tr>
                 </thead>
-                <tbody id="songTable">
-                    <tr class="border-b hover:bg-gray-50">
-                        
-
-                    </tr>
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 text-sm text-gray-700">2</td>
-                        <td class="px-6 py-4">
-                            <img src="./assets/images/saiyara.png" alt="Album Image"
-                                class="w-20 h-20 object-cover rounded-md">
-                        </td>
-                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Saiyaara (Movie: Saiyaara)</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Faheem Abdullah, Arslan Nizami & Irshad Kamil •
-                            SAIYAARA • 2025</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">2025-08-15</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">$15.99</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">
-                            <button
-                                class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
-                            <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer">Delete</button>
-                        </td>
-
-                    </tr>
-                </tbody>
+                <tbody id="songTable"></tbody>
             </table>
         </div>
     </main>
