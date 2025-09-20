@@ -58,38 +58,15 @@
                         <th class="px-6 py-4 text-left text-sm font-medium text-gray-700">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="border-b hover:bg-gray-50">
-                     <td class="px-6 py-4 text-sm text-gray-700">1</td>
-                        <td class="px-6 py-4">
-                            <img src="./assets/images/saiyara.png" alt="Album Image"
-                                class="w-20 h-20 object-cover rounded-md">
-                        </td>
-                        <td class="px-6 py-4 text-sm font-medium text-gray-900">Saiyaara (Movie: Saiyaara)</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Faheem Abdullah, Arslan Nizami & Irshad Kamil • SAIYAARA • 2025</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">Pop</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">2025-08-15</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">$15.99</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">
-                            <div class="flex items-center">
-                                <button class="px-3 py-1 bg-gray-200 rounded-l-md">-</button>
-                                <input type="number" value="1"
-                                    class="w-12 text-center border-t border-b border-gray-300" min="1" readonly>
-                                <button class="px-3 py-1 bg-gray-200 rounded-r-md">+</button>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-700">
-                            <button class="text-blue-600 hover:text-blue-800 font-semibold mr-2">Edit</button>
-                            <button class="text-red-600 hover:text-red-800 font-semibold">Delete</button>
-                        </td>
-                    </tr>
+                <tbody id="cartTable">
+                    
                 </tbody>
             </table>
 
             <!-- Cart Summary -->
             <div class="mt-8 flex justify-between items-center border-t pt-6">
                 <div class="text-lg font-semibold text-gray-900">Total</div>
-                <div class="text-2xl font-bold text-gray-900">$15.99</div>
+                <div class="text-2xl font-bold text-gray-900" id="cartTotal">$15.99</div>
             </div>
 
             <!-- Checkout Button -->
@@ -101,6 +78,11 @@
             </div>
         </div>
     </main>
+
+    <script src="script.js"></script>
+    <script>
+        renderCart();
+    </script>
 
 </body>
 

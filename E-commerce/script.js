@@ -11,9 +11,14 @@ navItems.forEach(item => {
 });
 
 let newMusic = JSON.parse(localStorage.getItem('NewMusic')) || [];
+let cart = JSON.parse(localStorage.getItem('Cart')) || [];
 
 function saveProducts() {
   localStorage.setItem('NewMusic', JSON.stringify(newMusic));
+}
+
+function saveCart() {
+  localStorage.setItem('Cart', JSON.stringify(cart));
 }
 
 function addMusic() {
@@ -83,34 +88,36 @@ function renderTable() {
 
   if (newMusic.length === 0) {
     tableBody.innerHTML = `
-      <div class="text-gray-500 text-2xl my-10">
-        No Songs to display...
-      </div>
+      <td colspan="8" class="text-center">
+        <div class="text-gray-500 text-2xl my-10">
+          No Songs to display...
+        </div>
+      </td>
     `;
     return;
   }
 
   newMusic.forEach((song, index) => {
-    const row = document.createElement('tr');
 
-    row.innerHTML += `
-      <td class="px-6 py-4 text-sm text-gray-700">${index + 1}</td>
-      <td class="px-6 py-4">
-          <img src="${song.song_image}" alt="${song.pname}"
-              class="w-20 h-20 object-cover rounded-md">
-      </td>
-      <td class="px-6 py-4 text-sm font-medium text-gray-900">${song.pname}</td>
-      <td class="px-6 py-4 text-sm text-gray-700">${song.aname}</td>
-      <td class="px-6 py-4 text-sm text-gray-700">${song.genre}</td>
-      <td class="px-6 py-4 text-sm text-gray-700">${song.date}</td>
-      <td class="px-6 py-4 text-sm text-gray-700">${song.price}</td>
-      <td class="px-6 py-4 text-sm text-gray-700">
-          <button onclick="editMusic(${index})"
-              class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
-          <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer" onclick="deleteMusic(${index})">Delete</button>
-      </td>
+    tableBody.innerHTML += `
+      <tr>
+        <td class="px-6 py-4 text-sm text-gray-700">${index + 1}</td>
+        <td class="px-6 py-4">
+            <img src="${song.song_image}" alt="${song.pname}"
+                class="w-20 h-20 object-cover rounded-md">
+        </td>
+        <td class="px-6 py-4 text-sm font-medium text-gray-900">${song.pname}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">${song.aname}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">${song.genre}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">${song.date}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">${song.price}</td>
+        <td class="px-6 py-4 text-sm text-gray-700">
+            <button onclick="editMusic(${index})"
+                class="text-blue-600 hover:text-blue-800 font-semibold mr-2 cursor-pointer">Edit</button>
+            <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer" onclick="deleteMusic(${index})">Delete</button>
+        </td>
+      </tr>
     `;
-    tableBody.appendChild(row);
   })
 }
 
@@ -130,16 +137,16 @@ function renderCards() {
     return;
   }
 
-  newMusic.forEach((song) => {
+  newMusic.forEach((song, index) => {
     const card = document.createElement('div');
 
     card.className = "group bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 overflow-hidden hover:shadow-xl hover:ring-rose-200 transition-all duration-300";
     card.innerHTML = `
-      <div class="relative">
+      <a class="relative" href="viewProduct.html">
         <img src="${song.song_image}" alt="${song.pname}" class="w-full h-auto object-contain transform transition-transform duration-500 group-hover:scale-105">
         <span class="absolute top-3 right-3 bg-rose-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow">₹${song.price}</span>
         <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur text-gray-700 text-xs px-2 py-1 rounded-full border border-gray-200">${song.genre}</span>
-      </div>
+      </a>
       <div class="p-4">
         <h2 title="${song.pname}" class="text-base md:text-lg font-semibold text-gray-900 truncate">${song.pname}</h2>
         <p title="${song.aname}" class="text-sm text-gray-600 truncate">${song.aname}</p>
@@ -149,7 +156,7 @@ function renderCards() {
           </svg>
           <span>${song.date}</span>
         </div>
-        <button class="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-medium shadow hover:from-rose-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400 transition cursor-pointer">
+        <button class="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 text-white font-medium shadow hover:from-rose-600 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-400 transition cursor-pointer" onclick="addCart(${index})">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/>
           </svg>
@@ -182,4 +189,95 @@ function deleteMusic(index) {
   saveProducts();
   renderTable();
   renderCards();
+}
+
+function addCart(index) {
+  const song = newMusic[index];
+  if (!song) return;
+
+  const existing = cart.find(c => c.pname === song.pname);
+
+  if (existing) {
+    existing.qty = (existing.qty || 1) + 1;
+    alert(`${song.pname} is already in the cart`);
+    return;
+  } else { cart.push({ ...song, qty: 1 }) }
+  saveCart();
+  alert(`${song.pname} added to cart`);
+}
+
+function renderCart() {
+  const cartTable = document.getElementById('cartTable');
+  const cartTotal = document.getElementById('cartTotal');
+  if (!cartTable || cartTotal) return;
+
+  cartTable.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartTable.innerHTML = `
+      <td colspan="9" class="text-center">
+        <div class="text-gray-500 text-4xl mt-10 mb-5">
+          Your Music Cart is Empty...
+        </div>
+      </td>
+    `
+    if (cartPrice) cartPrice.textContent = "$0";
+    return;
+  }
+
+
+  let total = 0;
+
+  cart.map((item, index) => {
+    const subTotal = item.price * item.qty;
+    total += subTotal;
+
+    cartTable.innerHTML += `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="px-6 py-4 text-sm text-gray-700">${index + 1}</td>
+          <td class="px-6 py-4">
+              <img src="${item.song_image}" alt="${item.pname}"
+                  class="w-20 h-20 object-cover rounded-md">
+          </td>
+          <td class="px-6 py-4 text-sm font-medium text-gray-900">${item.pname}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">${item.aname}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">${item.genre}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">${item.date}5</td>
+          <td class="px-6 py-4 text-sm text-gray-700">$${item.price}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">
+              <div class="flex items-center">
+                  <button class="px-3 py-1 bg-gray-200 rounded-l-md" onclick="decrement(${index})">-</button>
+                  <input type="number" value="1" class="w-10 text-center border-t border-b border-gray-300" readonly>
+                  <button class="px-3 py-1 bg-gray-200 rounded-r-md" onclick="increment(${index})">+</button>
+              </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-gray-700">
+              <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer" onclick="deleteCart(${index})">Delete</button>
+          </td>
+      </tr>
+    `
+  })
+  if (cartPrice) {
+    cartPrice.textContent = `₹${total}`;
+  }
+}
+
+function deleteCart(index) {
+  cart.splice(index, 1)
+  saveCart();
+  renderCart();
+}
+
+function increment(index) {
+
+}
+
+function decrement(index) {
+
+}
+
+function clearCart(index) {
+
+  saveCart();
+  renderCart();
 }
