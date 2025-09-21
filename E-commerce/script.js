@@ -208,23 +208,22 @@ function addCart(index) {
 
 function renderCart() {
   const cartTable = document.getElementById('cartTable');
-  const cartTotal = document.getElementById('cartTotal');
-  if (!cartTable || cartTotal) return;
+  const cartPrice = document.getElementById('cartTotal');
+  if (!cartTable) return;
 
   cartTable.innerHTML = "";
 
   if (cart.length === 0) {
     cartTable.innerHTML = `
-      <td colspan="9" class="text-center">
+      <td colspan="10" class="text-center">
         <div class="text-gray-500 text-4xl mt-10 mb-5">
           Your Music Cart is Empty...
         </div>
       </td>
     `
-    if (cartPrice) cartPrice.textContent = "$0";
+    if (cartPrice) cartPrice.textContent = "₹0";
     return;
   }
-
 
   let total = 0;
 
@@ -243,14 +242,15 @@ function renderCart() {
           <td class="px-6 py-4 text-sm text-gray-700">${item.aname}</td>
           <td class="px-6 py-4 text-sm text-gray-700">${item.genre}</td>
           <td class="px-6 py-4 text-sm text-gray-700">${item.date}5</td>
-          <td class="px-6 py-4 text-sm text-gray-700">$${item.price}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">₹${item.price}</td>
           <td class="px-6 py-4 text-sm text-gray-700">
               <div class="flex items-center">
                   <button class="px-3 py-1 bg-gray-200 rounded-l-md" onclick="decrement(${index})">-</button>
-                  <input type="number" value="1" class="w-10 text-center border-t border-b border-gray-300" readonly>
+                  <input type="number" value="${item.qty || 1}" class="w-10 text-center border-t border-b border-gray-300" readonly>
                   <button class="px-3 py-1 bg-gray-200 rounded-r-md" onclick="increment(${index})">+</button>
               </div>
           </td>
+          <td class="px-6 py-4 text-sm text-gray-700">₹${subTotal}</td>
           <td class="px-6 py-4 text-sm text-gray-700">
               <button class="text-red-600 hover:text-red-800 font-semibold cursor-pointer" onclick="deleteCart(${index})">Delete</button>
           </td>
@@ -269,15 +269,24 @@ function deleteCart(index) {
 }
 
 function increment(index) {
-
+  cart[index].qty++;
+  saveCart();
+  renderCart();
 }
 
 function decrement(index) {
-
+  if (cart[index].qty > 1) {
+    cart[index].qty--;
+  }else{
+    deleteCart(index);
+  }
+  saveCart();
+  renderCart();
 }
 
-function clearCart(index) {
-
+function clearCart() {
+  if (!confirm("Are you sure you want to clear the entire cart?")) return;
+  cart = [];
   saveCart();
   renderCart();
 }
