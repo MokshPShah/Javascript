@@ -241,7 +241,7 @@ function renderCart() {
           <td class="px-6 py-4 text-sm font-medium text-gray-900">${item.pname}</td>
           <td class="px-6 py-4 text-sm text-gray-700">${item.aname}</td>
           <td class="px-6 py-4 text-sm text-gray-700">${item.genre}</td>
-          <td class="px-6 py-4 text-sm text-gray-700">${item.date}5</td>
+          <td class="px-6 py-4 text-sm text-gray-700">${item.date}</td>
           <td class="px-6 py-4 text-sm text-gray-700">₹${item.price}</td>
           <td class="px-6 py-4 text-sm text-gray-700">
               <div class="flex items-center">
