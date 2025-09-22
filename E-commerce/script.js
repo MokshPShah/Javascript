@@ -142,7 +142,7 @@ function renderCards() {
 
     card.className = "group bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 overflow-hidden hover:shadow-xl hover:ring-rose-200 transition-all duration-300";
     card.innerHTML = `
-      <a class="relative" href="viewProduct.html">
+      <a class="relative" href="viewProduct.html?index=${index}">
         <img src="${song.song_image}" alt="${song.pname}" class="w-full h-auto object-contain transform transition-transform duration-500 group-hover:scale-105">
         <span class="absolute top-3 right-3 bg-rose-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow">₹${song.price}</span>
         <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur text-gray-700 text-xs px-2 py-1 rounded-full border border-gray-200">${song.genre}</span>
@@ -277,7 +277,7 @@ function increment(index) {
 function decrement(index) {
   if (cart[index].qty > 1) {
     cart[index].qty--;
-  }else{
+  } else {
     deleteCart(index);
   }
   saveCart();
@@ -289,4 +289,52 @@ function clearCart() {
   cart = [];
   saveCart();
   renderCart();
+}
+
+function renderProducts() {
+  const renderDetails = document.getElementById('renderDetail')
+  if (!renderDetails) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const index = parseInt(params.get('index'));
+
+  const product = newMusic[index];
+  document.title = `${product.pname} | GrooveGear Music - Where Music Begins`
+  renderDetails.title = `${product.pname} | GrooveGear Music - Where Music Begins`
+
+  if (!product) {
+    renderDetails.innerHTML = `
+      <p>Product not found.</p>
+    `;
+  }
+
+  renderDetails.innerHTML += `
+      <div class="container px-5 py-14 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <img alt="song cover" 
+             class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" 
+             src="${product.song_image}" 
+             alt="${product.pname}">
+        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-2">${product.pname}</h1>
+          <p class="mb-4 text-lg text-gray-700">By ${product.aname}</p>
+
+          <div class="mb-4">
+            <p><span class="font-semibold">Genre:</span> ${product.genre}</p>
+            <p><span class="font-semibold">Release Date:</span> ${product.date}</p>
+            <p><span class="font-semibold">Price:</span> $${product.price}</p>
+          </div>
+
+          <div class="flex items-center">
+            <span class="title-font font-medium text-2xl text-gray-900 mr-4">$${product.price}</span>
+            <button class="ml-auto text-white bg-rose-500 border-0 py-2 px-6 focus:outline-none hover:bg-rose-600 rounded" 
+                    onclick="addCart(${index})">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+
 }

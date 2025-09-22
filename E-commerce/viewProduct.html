@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="tailwind.js">
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script src="tailwind.js"></script>
 </head>
+
 <body>
-    
+    <!-- Header -->
+    <header class="bg-rose-100 shadow-md">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a href="index.html" class="flex title-font font-medium items-center mb-4 md:mb-0">
+                <span class="ml-3 text-xl font-bold">GrooveGear</span>
+            </a>
+            <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+                <a href="index.html" class="mr-5 hover:text-rose-600 nav-item">Home</a>
+                <a href="manageProducts.html" class="mr-5 hover:text-rose-600 nav-item">Manage Product</a>
+            </nav>
+            <a href="addCart.html"
+                class="inline-flex items-center bg-rose-500 text-white border-0 py-2 px-3 focus:outline-none hover:bg-rose-600 rounded-md text-base mt-4 md:mt-0 transition-all duration-300">View
+                Cart
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- main section -->
+    <main>
+        <section class="text-gray-600 body-font overflow-hidden" id="renderDetail"></section>
+    </main>
+
     <script src="script.js"></script>
     <script>
         renderProducts();
     </script>
 </body>
+
 </html>
