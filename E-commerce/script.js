@@ -322,11 +322,10 @@ function renderProducts() {
           <div class="mb-4">
             <p><span class="font-semibold">Genre:</span> ${product.genre}</p>
             <p><span class="font-semibold">Release Date:</span> ${product.date}</p>
-            <p><span class="font-semibold">Price:</span> $${product.price}</p>
           </div>
 
           <div class="flex items-center">
-            <span class="title-font font-medium text-2xl text-gray-900 mr-4">$${product.price}</span>
+            <span class="title-font font-medium text-2xl text-gray-900 mr-4">₹${product.price}</span>
             <button class="ml-auto text-white bg-rose-500 border-0 py-2 px-6 focus:outline-none hover:bg-rose-600 rounded" 
                     onclick="addCart(${index})">
               Add to Cart
