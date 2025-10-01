@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <script src="tailwind.js"></script>
+    <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white font-sans">
+    <div class="flex items-center justify-center min-h-screen px-4">
+        <div class="bg-gray-800 shadow-lg shadow-white/10 rounded-lg w-full max-w-5xl p-6 md:p-10">
+            <h1 class="text-3xl font-bold text-center mb-4">Check Weather</h1>
+            <p class="text-gray-400 text-sm md:text-base text-center mb-8">
+                Enter <span class="text-blue-400 font-medium">City Name</span> or <span
+                    class="text-blue-400 font-medium">Coordinates</span> to get live weather updates.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Search with City</h3>
+                        <label for="city" class="block text-sm text-gray-300 mb-1">City Name:</label>
+                        <input type="text" id="city" placeholder="Enter the city name"
+                            class="w-full bg-gray-700 border border-gray-500 focus:border-white rounded-md px-4 py-2 text-white outline-none transition duration-300 placeholder-gray-400" />
+                    </div>
+
+
+                    <div class="text-center text-gray-500 font-medium">OR</div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Search with Coordinates</h3>
+                        <label for="lat" class="block text-sm text-gray-300 mb-1">Latitude:</label>
+                        <input type="number" id="lat" placeholder="Enter latitude"
+                            class="w-full bg-gray-700 border border-gray-500 focus:border-white rounded-md px-4 py-2 text-white outline-none transition duration-300 placeholder-gray-400 mb-4" />
+
+                        <label for="lon" class="block text-sm text-gray-300 mb-1">Longitude:</label>
+                        <input type="number" id="lon" placeholder="Enter longitude"
+                            class="w-full bg-gray-700 border border-gray-500 focus:border-white rounded-md px-4 py-2 text-white outline-none transition duration-300 placeholder-gray-400" />
+                    </div>
+
+                    <button id="fetchData"
+                        class="w-full bg-blue-600 hover:bg-blue-700 transition duration-200 px-4 py-2 rounded-md text-white font-semibold cursor-pointer">
+                        Get Weather
+                    </button>
+                </div>
+
+                <div id="weatherCard" class="bg-gray-700/50 rounded-lg p-6">
+                    <h2 class="text-xl sm:text-2xl font-bold text-blue-400 mb-5 text-center">Current Weather</h2>
+
+                    <div id="defaultWeather" class="flex flex-col items-center justify-center">
+                        <img src="https://openweathermap.org/img/wn/02d@2x.png" class="w-24 h-24 mb-3 opacity-70"
+                            alt="Default Weather" />
+                        <p class="text-gray-300 font-medium text-center">Weather info will appear here...</p>
+                    </div>
+
+                    <div id="loadingSpinner" class="hidden flex justify-center items-center py-6">
+                        <div class="w-12 h-12 border-4 border-blue-400 border-dashed rounded-full animate-spin"></div>
+                    </div>
+
+                    <div id="weatherContent" class="hidden">
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-center mb-6 p-4 bg-gray-600 rounded-lg shadow-inner transition">
+                            <img id="weatherIcon" class="w-28 h-28 mb-2 sm:mb-0 sm:mr-4" alt="Weather Icon" />
+                            <p id="weatherDesc"
+                                class="text-lg sm:text-xl font-semibold text-white capitalize text-center sm:text-left">
+                            </p>
+                        </div>
+
+                        <div id="weatherResult"
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-gray-600 text-gray-200 text-sm sm:text-md border border-gray-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
