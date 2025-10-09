@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup | ExpenseHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-semibold text-center text-indigo-600 mb-6">Create an Account</h2>
+        <p class="text-center text-gray-500 mb-6">Start tracking your expenses easily</p>
+
+        <form id="signup-form" class="space-y-5">
+            <div>
+                <label for="signupusername" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="signupusername" name="username" required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50" />
+            </div>
+
+            <div>
+                <label for="signupemail" class="block text-sm font-medium text-gray-700">Email address</label>
+                <input type="email" id="signupemail" name="email" required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50" />
+            </div>
+
+            <div>
+                <label for="signuppassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="signuppassword" name="password" required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50" />
+            </div>
+
+            <div>
+                <label for="signupconfirmPassword" class="block text-sm font-medium text-gray-700">Confirm
+                    Password</label>
+                <input type="password" id="signupconfirmPassword" name="confirmPassword" required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50" />
+            </div>
+
+            <div>
+                <button type="submit" id="signup"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+
+        <p class="text-center text-sm text-gray-500 mt-6">
+            Already have an account?
+            <a href="login.html" class="text-indigo-600 hover:underline">Login here</a>
+        </p>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

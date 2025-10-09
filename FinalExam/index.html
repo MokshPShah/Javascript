@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | ExpenseHub</title>
+    <script src="./assets/js/tailwind.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-emerald-600">ExpenseHub Dashboard</h1>
+            <div class="flex items-center gap-4">
+                <span id="welcomeUser" class="text-gray-700 font-medium capitalize"></span>
+                <button onclick="logout()"
+                    class="bg-red-500 text-white px-4 py-2 hover:bg-red-600 cursor-pointer">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto mt-10 px-4">
+        <!-- Budget Section -->
+        <div class="bg-white p-6 rounded shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Set Budget</h2>
+            <form id="budgetForm" class="flex items-center gap-4 max-w-sm">
+                <input type="number" id="budgetAmount" placeholder="Enter your budget" min="0"
+                    class="border rounded px-4 py-2 bg-gray-50 flex-grow" required>
+                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+                    Set Budget
+                </button>
+            </form>
+            <p id="budgetInfo" class="mt-4 text-gray-700"></p>
+        </div>
+
+        <!-- Expense Form -->
+        <div class="bg-white p-6 rounded shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Add Expense</h2>
+            <form id="expenseForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="text" id="expenseName" placeholder="Expense Name" required
+                    class="border rounded px-4 py-2 bg-gray-50">
+                <input type="number" id="expenseAmount" placeholder="Amount" required
+                    class="border rounded px-4 py-2 bg-gray-50">
+                <input type="date" id="expenseDate" required class="border rounded px-4 py-2 bg-gray-50">
+                <select id="expenseCategory" required class="border rounded px-4 py-2 bg-gray-50">
+                    <option value="">Select Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button type="submit"
+                    class="col-span-full bg-emerald-600 text-white px-6 py-2 rounded hover:bg-emerald-700">Add
+                    Expense</button>
+            </form>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+            <select id="filterCategory" class="p-2 rounded border bg-white">
+                <option value="">Filter by Category</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <select id="sortDate" class="p-2 rounded border bg-white">
+                <option value="desc">Sort by Date (Newest)</option>
+                <option value="asc">Sort by Date (Oldest)</option>
+            </select>
+        </div>
+
+        <!-- Expense List -->
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Your Expenses</h2>
+            <ul id="expenseList" class="space-y-4">
+            </ul>
+        </div>
+    </main>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>
